@@ -1,49 +1,38 @@
 <template>
-  <div class="container">
-    <SearchBar @termChange="onTermChange"></SearchBar>
-    <div class="row">
-      <VideoDetail :video="selectedVideo" />
-      <VideoList @videoSelect="onVideoSelect" :videos="videos"></VideoList>
-    </div>
-  </div>
+	<div class="container">
+		<search-bar @termChange="onTermChange"></search-bar>
+		<video-list :videos="videos" ></video-list>
+	</div>
 </template>
 
 <script>
 import axios from 'axios';
-import SearchBar from './components/SearchBar';
-import VideoList from './components/VideoList';
-import VideoDetail from './components/VideoDetail';
-
-const API_KEY = 'AIzaSyB0ToJFPdt3Dp2stb8ynXqHkNe9U0ivB0c';
+import SearchBar from './components/SearchBar.vue';
+import VideoList from './components/VideoList.vue';
+const API_KEY = 'AIzaSyDJoRO3lTjE22ht1uIu-NQads4pwW__JkQ';
 
 export default {
-  name: 'App',
-  components: {
-    SearchBar,
-    VideoList,
-    VideoDetail
-  },
-  data() {
-    return { videos: [], selectedVideo: null };
-  },
-  methods: {
-    onVideoSelect(video) {
-      this.selectedVideo = video;
-    },
-    onTermChange(searchTerm) {
-      axios
-        .get('https://www.googleapis.com/youtube/v3/search', {
-          params: {
-            key: API_KEY,
-            type: 'video',
-            part: 'snippet',
-            q: searchTerm
-          }
-        })
-        .then(response => {
-          this.videos = response.data.items;
-        });
-    }
-  }
+	name: 'App',
+	components: { 
+		SearchBar,
+		VideoList,
+	},
+	data() {
+		return { videos: [] };
+	},
+	methods: {
+		onTermChange(searchTerm) {
+			axios.get('https://www.googleapis.com/youtube/v3/search', {
+				params: {
+					key: API_KEY,
+					type: 'video',
+					part: 'snippet',
+					q: searchTerm,
+				}
+			}).then(resonse => {
+				this.videos = resonse.data.items;
+			});
+		}
+	},
 };
 </script>
