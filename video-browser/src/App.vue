@@ -1,7 +1,13 @@
 <template>
 	<div class="container">
 		<search-bar @termChange="onTermChange"></search-bar>
-		<video-list :videos="videos" ></video-list>
+		<video-detail
+			:video="video"
+		></video-detail>
+		<video-list
+			:videos="videos"
+			@videoSelect="onVideoSelect"
+		></video-list>
 	</div>
 </template>
 
@@ -9,13 +15,15 @@
 import axios from 'axios';
 import SearchBar from './components/SearchBar.vue';
 import VideoList from './components/VideoList.vue';
+import VideoDetail from './components/VideoDetail.vue';
 const API_KEY = 'AIzaSyDJoRO3lTjE22ht1uIu-NQads4pwW__JkQ';
 
 export default {
 	name: 'App',
-	components: { 
+	components: {
 		SearchBar,
 		VideoList,
+		VideoDetail,
 	},
 	data() {
 		return { videos: [] };
@@ -32,7 +40,10 @@ export default {
 			}).then(resonse => {
 				this.videos = resonse.data.items;
 			});
-		}
+		},
+		onVideoSelect(video) {
+			this.video = video;
+		},
 	},
 };
 </script>
