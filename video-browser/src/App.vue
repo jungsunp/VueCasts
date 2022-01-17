@@ -1,13 +1,15 @@
 <template>
 	<div class="container">
 		<search-bar @termChange="onTermChange"></search-bar>
-		<video-detail
-			:video="video"
-		></video-detail>
-		<video-list
-			:videos="videos"
-			@videoSelect="onVideoSelect"
-		></video-list>
+		<div>
+			<video-detail
+				:video="selectedVideo"
+			></video-detail>
+			<video-list
+				:videos="videos"
+				@videoSelect="onVideoSelect"
+			></video-list>
+		</div>
 	</div>
 </template>
 
@@ -26,7 +28,7 @@ export default {
 		VideoDetail,
 	},
 	data() {
-		return { videos: [] };
+		return { videos: [], selectedVideo: null };
 	},
 	methods: {
 		onTermChange(searchTerm) {
@@ -42,7 +44,7 @@ export default {
 			});
 		},
 		onVideoSelect(video) {
-			this.video = video;
+			this.selectedVideo = video;
 		},
 	},
 };
