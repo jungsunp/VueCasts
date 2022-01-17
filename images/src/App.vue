@@ -1,20 +1,15 @@
 <template>
-  <div>
-    <AppHeader></AppHeader>
-
-    <div class="ui container">
-      <router-view></router-view>
-    </div>
-  </div>
+	<div>
+		<app-header></app-header>
+	</div>
 </template>
 
 <script>
-import AppHeader from './components/AppHeader';
+import AppHeader from './Components/AppHeader.vue';
 
 export default {
-  name: 'App',
-  components: {
-    AppHeader
-  }
-};
+	name: 'App',
+	components: { AppHeader },
+
+}
 </script>
