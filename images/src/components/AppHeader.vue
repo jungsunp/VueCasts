@@ -3,17 +3,20 @@
 		<a href="/" class="active item">
 			Image Storage
 		</a>
+
 		<div class="right menu">
-			<a class="ui item">
-				Logout
+			<a class="ui item" href="#" @click="login">
+				Login
 			</a>
 		</div>
 	</div>
 </template>
 
 <script>
-export default {
-	naem: 'AppHeader',
+import { mapActions } from 'vuex';
 
+export default {
+	name: 'AppHeader',
+	methods: mapActions(['login'])
 }
 </script>
