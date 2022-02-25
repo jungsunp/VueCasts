@@ -1,4 +1,4 @@
-import secrets from '../../secrets';
+import secrets from '../secrets';
 import qs from 'qs';
 
 const ROOT_URL = 'https://api.imgur.com';
